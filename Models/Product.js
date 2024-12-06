@@ -4,12 +4,12 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
     productName: { type: String, required: true },
     description: { type: String },
-    // category: { type: mongoose.Schema.Types.ObjectId, ref: "Category", required: true },
-    // subCategory: { type: mongoose.Schema.Types.ObjectId, ref: "SubCategory", required: true },  //should take reference 
-    // subSubCategory: { type: mongoose.Schema.Types.ObjectId, ref: "SubSubCategory" },
-    category: { type:String},
-    subCategory: { type:String},
-    subSubCategory: { type:String},
+    category: { type: mongoose.Schema.Types.ObjectId, ref: "Category", required: true },
+    subCategory: { type: mongoose.Schema.Types.ObjectId, ref: "SubCategory", required: true },  //should take reference 
+    subSubCategory: { type: mongoose.Schema.Types.ObjectId, ref: "SubSubCategory" },
+    // category: { type:String},
+    // subCategory: { type:String},
+    // subSubCategory: { type:String},
     brand: { type: String },
     productType: { type: String },
     productSKU: { type: String, unique: true },
