@@ -12,6 +12,7 @@ const brandController = require('../Controllers/brandController');
 const deliveryManController = require('../Controllers/deliveryManController');
 const emergencyContactController = require('../Controllers/emergencyContactController');
 const attributeSetupController = require('../Controllers/attributeSetupController');
+const socialMediaController = require("../Controllers/socialMediaController");
 
 
 // User routes
@@ -98,6 +99,13 @@ router.put('/attributes/update/:id', attributeSetupController.updateAttribute);
 router.patch('/attributes/softdelete/:id', attributeSetupController.softDeleteAttribute);
 router.patch('/attributes/restore/:id', attributeSetupController.restoreAttribute);
 router.delete('/attributes/delete/:id', attributeSetupController.permanentDeleteAttribute);
+
+//Routes for socialmedia links
+router.post("/socialmedia/addSocialMedia", socialMediaController.addSocialMedia);
+router.get("/socialmedia/getAllSocialMedia", socialMediaController.getAllSocialMedia);
+router.put("/socialmedia/updateSocialMedia/:id", socialMediaController.updateSocialMedia);
+router.delete("/socialmedia/deleteSocialMedia/:id", socialMediaController.deleteSocialMedia);
+router.patch("/socialmedia/toggleStatus/:id/status", socialMediaController.toggleStatus);
 
 
 module.exports = router
