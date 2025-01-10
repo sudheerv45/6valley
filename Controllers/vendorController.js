@@ -1,5 +1,5 @@
 const Vendor = require("../Models/Vendor");
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
 
 // Create a Vendor
 const createVendor = async (req, res) => {
