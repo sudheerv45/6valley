@@ -2,7 +2,7 @@
 const Product = require("../Models/Product");
 const XLSX = require('xlsx');
 const fs = require('fs');
-const ProductApproval = require('../models/ProductApproval');
+const ProductApproval = require('../Models/ProductApproval');
 
 
 // Create a Product
