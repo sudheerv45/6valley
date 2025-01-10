@@ -13,7 +13,14 @@ const deliveryManController = require('../Controllers/deliveryManController');
 const emergencyContactController = require('../Controllers/emergencyContactController');
 const attributeSetupController = require('../Controllers/attributeSetupController');
 const socialMediaController = require("../Controllers/socialMediaController");
-
+const bannerController = require("../Controllers/bannerController");
+const couponController = require("../Controllers/couponController");
+const flashDealController = require("../Controllers/flashDealController");
+const dealController = require("../Controllers/dealOfTheDayController");
+const featureDealController = require("../Controllers/featureDealController");
+const clearanceSaleController = require ("../Controllers/clearanceSaleController");
+const announcementController = require("../Controllers/announcementController");
+const helpSupportController = require("../Controllers/helpSupportController");
 
 // User routes
 router.post('/users/create',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'idImage', maxCount: 1 }]), userController.createUser)
@@ -106,6 +113,72 @@ router.get("/socialmedia/getAllSocialMedia", socialMediaController.getAllSocialM
 router.put("/socialmedia/updateSocialMedia/:id", socialMediaController.updateSocialMedia);
 router.delete("/socialmedia/deleteSocialMedia/:id", socialMediaController.deleteSocialMedia);
 router.patch("/socialmedia/toggleStatus/:id/status", socialMediaController.toggleStatus);
+
+// Routes for banner
+router.post("/banner/createBanner",upload.single("image"),bannerController.createBanner);
+router.get("/banner/getBanners", bannerController.getBanners);
+router.delete("/banner/deleteBanner/:id", bannerController.deleteBanner);
+router.put("/banner/updateBanner/:id",upload.single("image"),bannerController.updateBanner);
+
+//Routes for coupons
+router.get("/coupons/generateCouponCode", couponController.generateCouponCode); 
+router.post("/coupons/createCoupon", couponController.createCoupon); 
+router.get("/coupons/getAllCoupons", couponController.getAllCoupons); 
+router.get("/coupons/getCouponById/:id", couponController.getCouponById); 
+router.put("/coupons/updateCoupon/:id", couponController.updateCoupon); 
+router.delete("/coupons/deleteCoupon/:id", couponController.deleteCoupon);
+router.patch("/coupons/:id/status", couponController.toggleCouponStatus);
+
+
+//Routes for FlashDeals
+router.post("/FlashDeals/createFlashDeal", upload.single("image"), flashDealController.createFlashDeal);
+router.get("/FlashDeals/getAllFlashDeals", flashDealController.getAllFlashDeals);
+router.get("/FlashDeals/getFlashDealById/:id", flashDealController.getFlashDealById);
+router.put("/FlashDeals/updateFlashDeal/:id", upload.single("image"), flashDealController.updateFlashDeal);
+router.delete("/FlashDeals/deleteFlashDeal/:id", flashDealController.deleteFlashDeal);
+
+//Routes for Dealof the Day 
+router.post("/DealOfTheDay/createDeal", dealController.createDeal);
+router.get("/DealOfTheDay/getAllDeals", dealController.getAllDeals);
+router.get("/DealOfTheDay/getDealById/:id", dealController.getDealById);
+router.put("/DealOfTheDay/updateDeal/:id", dealController.updateDeal);
+router.delete("/DealOfTheDay/deleteDeal/:id", dealController.deleteDeal);
+
+//Routes for Featuredeal
+router.post("/Featuredeal/createFeatureDeal", featureDealController.createFeatureDeal);
+router.get("/Featuredeal/getAllFeatureDeals", featureDealController.getAllFeatureDeals);
+router.get("/Featuredeal/getFeatureDealById/:id", featureDealController.getFeatureDealById);
+router.put("/Featuredeal/updateFeatureDeal/:id", featureDealController.updateFeatureDeal);
+router.delete("/Featuredeal/deleteFeatureDeal/:id", featureDealController.deleteFeatureDeal);
+
+
+//Routes for Clearance Sale
+router.post("/ClearanceSale/createClearanceSale", clearanceSaleController.createClearanceSale);
+router.get("/ClearanceSale/getAllClearanceSales", clearanceSaleController.getAllClearanceSales);
+router.get("/ClearanceSale/getClearanceSaleById/:id", clearanceSaleController.getClearanceSaleById);
+router.put("/ClearanceSale/updateClearanceSale/:id", clearanceSaleController.updateClearanceSale);
+router.delete("/ClearanceSale/deleteClearanceSale/:id", clearanceSaleController.deleteClearanceSale);
+
+//Routes for Announcements
+router.post("/Announcements/createAnnouncement", announcementController.createAnnouncement);
+router.get("/Announcements/getAllAnnouncements", announcementController.getAllAnnouncements);
+router.get("/Announcements/getAnnouncementById/:id", announcementController.getAnnouncementById);
+router.put("/Announcements/updateAnnouncement/:id", announcementController.updateAnnouncement);
+router.delete("/Announcements/deleteAnnouncement/:id", announcementController.deleteAnnouncement);
+
+//Routes for Notifications
+
+
+
+// Message-related routes
+router.post("/send-message",helpSupportController.sendMessage);
+router.get("/inbox", helpSupportController.getInbox);
+
+// Ticket-related routes
+router.post("/create-ticket", helpSupportController.createTicket);
+router.patch("/update-ticket/:ticketId", helpSupportController.updateTicket);
+router.get("/tickets", helpSupportController.getTickets);
+router.get("/ticket/:ticketId", helpSupportController.getTicketById);
 
 
 module.exports = router

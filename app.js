@@ -7,8 +7,8 @@ const mongoose = require('mongoose');
 //const port = process.env.PORT
 
 const setupInitialData = require('./Middlewares/staticData');
-const adminRoutes = require('./Routes/adminRoutes')
-const roleRoutes = require('./Routes/roleRoute')
+const adminRoutes = require('./Routes/adminRoutes');
+const roleRoutes = require('./Routes/roleRoute');
 const vendorController = require("./Routes/vendorRoutes");
 const productController = require('./Routes/productRoutes');
 

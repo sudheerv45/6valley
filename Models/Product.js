@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
     minOrderQty: { type: Number },
     currentStockQty: { type: Number },
     discountType: { type: String, enum: ["Percentage", "Flat"] },
-    discountAmount: { type: Number },
+    discountAmount: { type: Number },  
     taxAmount: { type: Number },
     taxCalculation: { type: String, enum: ["Inclusive", "Exclusive"] },
     shippingCost: { type: Number },
