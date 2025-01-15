@@ -1,5 +1,6 @@
 // models/Product.js
 const mongoose = require("mongoose");
+const { createProduct } = require("../Controllers/productController");
 
 const productSchema = new mongoose.Schema({
     productName: { type: String, required: true },
