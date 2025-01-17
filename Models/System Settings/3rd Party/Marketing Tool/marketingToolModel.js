@@ -4,6 +4,7 @@ const marketingToolSchema = new mongoose.Schema({
     platformName: {
         type: String,
         required: true, // e.g., "Google Ads"
+        match: [/^[A-Za-z\s]+$/, "Platform Name must only contain alphabets"],
     },
     platformId: {
         type: String,

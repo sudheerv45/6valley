@@ -52,7 +52,7 @@ async function startServer() {
 
         // Run the setup function
         await setupInitialData();
-        
+       
         // Start the server
         const port = process.env.PORT || 3000;
         app.listen(port, () => {

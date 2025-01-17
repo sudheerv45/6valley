@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { createProduct } = require("../Controllers/productController");
 
 const productSchema = new mongoose.Schema({
-    productName: { type: String, required: true },
+    productName: { type: String, required: true, match: [/^[A-Za-z\s]+$/, "Product Name must only contain alphabets"], },
     description: { type: String },
     category: { type: mongoose.Schema.Types.ObjectId, ref: "Category", required: true },
     subCategory: { type: mongoose.Schema.Types.ObjectId, ref: "SubCategory", required: true },  //should take reference 
