@@ -1,11 +1,11 @@
-// models/socialMediaChat.model.js
 const mongoose = require('mongoose');
 
 const socialMediaChatSchema = new mongoose.Schema(
   {
     whatsappNumber: {
       type: String,
-      required: true,
+      required: [true, 'WhatsApp number is required.'],
+      match: [/^\+[1-9]{1}[0-9]{3,14}$/, 'Please provide a valid international WhatsApp number starting with a + sign.']
     },
     status: {
       type: Boolean,

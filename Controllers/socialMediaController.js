@@ -1,4 +1,4 @@
-const SocialMedia = require("../Models/SocialMedia");
+const SocialMedia = require("../Models/System Settings/Pages&Media/Social Media Links/socialMediaLinksModel");
 
 // Add a new social media link
 const addSocialMedia = async (req, res) => {

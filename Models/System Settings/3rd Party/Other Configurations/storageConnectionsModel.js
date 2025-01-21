@@ -1,4 +1,3 @@
-// models/storageConnections.model.js
 const mongoose = require('mongoose');
 
 const storageConnectionsSchema = new mongoose.Schema(
@@ -16,30 +15,38 @@ const storageConnectionsSchema = new mongoose.Schema(
     s3Credential: {
       accessKey: {
         type: String,
-        required: true,
+        required: [true, 'AWS access key is required'],
+        minlength: [20, 'AWS access key should be at least 20 characters long']
       },
       secretAccessKey: {
         type: String,
-        required: true,
+        required: [true, 'AWS secret access key is required'],
+        minlength: [40, 'AWS secret access key should be at least 40 characters long']
       },
       region: {
         type: String,
-        required: true,
+        required: [true, 'AWS region is required'],
       },
       bucket: {
         type: String,
-        required: true,
+        required: [true, 'AWS S3 bucket name is required'],
       },
       url: {
         type: String,
+        match: [/(https?:\/\/[^\s]+)/, 'Please provide a valid URL'],
       },
       endpoint: {
         type: String,
+        match: [/(https?:\/\/[^\s]+)/, 'Please provide a valid endpoint URL'],
       },
     },
     isDeleted: {
       type: Boolean,
       default: false,
+    },
+    status: {
+      type: Boolean,
+      default: true, // Indicates whether the storage connection is active
     },
   },
   {

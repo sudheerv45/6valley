@@ -1,4 +1,3 @@
-// models/recaptcha.model.js
 const mongoose = require('mongoose');
 
 const recaptchaSchema = new mongoose.Schema(
@@ -9,11 +8,13 @@ const recaptchaSchema = new mongoose.Schema(
     },
     siteKey: {
       type: String,
-      required: true,
+      required: [true, 'Site key is required.'],
+      match: [/^[A-Za-z0-9-_]{39,40}$/, 'Site key must be a valid ReCAPTCHA site key format.'],
     },
     secretKey: {
       type: String,
-      required: true,
+      required: [true, 'Secret key is required.'],
+      match: [/^[A-Za-z0-9-_]{39,40}$/, 'Secret key must be a valid ReCAPTCHA secret key format.'],
     },
     isDeleted: {
       type: Boolean,
