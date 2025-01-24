@@ -47,7 +47,7 @@ app.use("/api/products", productController);
 async function startServer() {
     try {
         // Connect to MongoDB
-        await mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+        await mongoose.connect(process.env.MONGO_URL, { connectTimeoutMS: 30000 });
         console.log('Connected to MongoDB successfully');
 
         // Run the setup function
