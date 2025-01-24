@@ -4,24 +4,26 @@ const router = express.Router();
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' }); // Temporary folder for file uploads
 const productController = require("../Controllers/productController");
-
-// Create Product
-router.post("/createProduct", productController.createProduct);
-router.get("/getAllProducts", productController.getAllProducts);
-router.get("/getProductById/:id", productController.getProductById);
-router.put("/updateProduct/:id", productController.updateProduct);
-router.delete("/deleteProduct/:id", productController.deleteProduct);
-
-// Bulk Import & Export
-router.post('/bulk-import', upload.single('file'), productController.bulkImport);
-router.get('/bulk-export', productController.bulkExport);
-
-// Admin APIs
-router.get('/new-requests', productController.getNewProductRequests);
-router.get('/update-requests', productController.getUpdateProductRequests);
-router.get('/approved-products', productController.getApprovedProducts);
-router.get('/denied-products', productController.getDeniedProducts);
-router.post('/approve/:id', productController.approveRequest);
-router.post('/deny/:id', productController.denyRequest);
-
+const checkPermission = require('../Middlewares/permissionAuthorizer')
+const { adminauthenticate } = require('../Middlewares/authenticate');
+ 
+router.post('/createProduct', adminauthenticate, checkPermission('Product management', 'Create'), productController.createProduct);
+router.get('/getAllProducts', adminauthenticate, checkPermission('Product management', 'Read'), productController.getAllProducts);
+router.get('/getProductById/:id', adminauthenticate, checkPermission('Product management', 'Read'), productController.getProductById);
+router.put('/updateProduct/:id', adminauthenticate, checkPermission('Product management', 'Update'), productController.updateProduct);
+router.delete('/deleteProduct/:id', adminauthenticate, checkPermission('Product management', 'Delete'), productController.deleteProduct);
+ 
+router.post('/bulk-import', adminauthenticate, checkPermission('Product management', 'Create'), upload.single('file'), productController.bulkImport);
+router.get('/bulk-export', adminauthenticate, checkPermission('Product management', 'Read'), productController.bulkExport);
+ 
+router.get('/new-requests', adminauthenticate, checkPermission('Product management', 'Read'), productController.getNewProductRequests);
+router.get('/update-requests', adminauthenticate, checkPermission('Product management', 'Read'), productController.getUpdateProductRequests);
+router.get('/approved-products', adminauthenticate, checkPermission('Product management', 'Read'), productController.getApprovedProducts);
+router.get('/denied-products', adminauthenticate, checkPermission('Product management', 'Read'), productController.getDeniedProducts);
+router.post('/approve/:id', adminauthenticate, checkPermission('Product management', 'Update'), productController.approveRequest);
+router.post('/deny/:id', adminauthenticate, checkPermission('Product management', 'Update'), productController.denyRequest);
+ 
+ 
+ 
+//17
 module.exports = router;

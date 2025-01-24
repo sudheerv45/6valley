@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const assignedPermissionsSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Admin',
+        ref: 'User',
         required: true
     },
     modulePermissions: [{
